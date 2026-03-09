@@ -15,12 +15,26 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "SpeechCloud — AI Voice Ordering voor Restaurants",
-    description: "Elke oproep beantwoord. Elke bestelling binnen. De AI-telefoonagent voor restaurants.",
+    title: "SpeechCloud — Elke oproep beantwoord. Elke bestelling binnen.",
+    description: "De AI-telefoonagent voor restaurants. Neemt 24/7 op in vloeiend Nederlands, plaatst bestellingen direct in uw systeem.",
     url: "https://speechcloud.nl",
     siteName: "SpeechCloud",
     type: "website",
     locale: "nl_NL",
+    images: [
+      {
+        url: "https://speechcloud.vercel.app/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SpeechCloud - Elke oproep beantwoord. Elke bestelling binnen.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SpeechCloud — Elke oproep beantwoord. Elke bestelling binnen.",
+    description: "De AI-telefoonagent voor restaurants. Neemt 24/7 op in vloeiend Nederlands.",
+    images: ["https://speechcloud.vercel.app/og-image.jpg"],
   },
 };
 
