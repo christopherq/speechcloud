@@ -47,7 +47,7 @@ export default function Home() {
       <nav className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center">
-            <img src="/logo.png" alt="SpeechCloud" className="h-8" />
+            <img src="/logo-nav.png" alt="SpeechCloud" className="h-8" />
           </div>
           <div className="hidden items-center gap-8 md:flex">
             <a href="#hoe-het-werkt" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Hoe het werkt</a>
@@ -394,7 +394,7 @@ export default function Home() {
       <footer className="bg-gray-900 border-t border-gray-800 py-12">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
           <div className="flex items-center">
-            <img src="/logo.png" alt="SpeechCloud" className="h-7 brightness-0 invert" />
+            <img src="/logo-nav.png" alt="SpeechCloud" className="h-7 brightness-0 invert" />
           </div>
           <div className="flex items-center gap-6 text-sm text-gray-500">
             <a href="#hoe-het-werkt" className="hover:text-white transition-colors">Hoe het werkt</a>
