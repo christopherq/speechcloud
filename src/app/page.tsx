@@ -1,9 +1,6 @@
 "use client";
-import { Phone, Clock, TrendingUp, Zap, Shield, BarChart3, ArrowRight, CheckCircle2, Bot, ChevronDown, Play, X, Headphones, Users } from "lucide-react";
+import { Phone, Clock, TrendingUp, Zap, Shield, BarChart3, ArrowRight, CheckCircle2, Bot, ChevronDown, Play, AlertTriangle, Headphones, Users } from "lucide-react";
 import { useState } from "react";
-
-const SC = "#2563EB"; // SpeechCloud blue
-const SC_DARK = "#1d4ed8";
 
 const steps = [
   { step: "01", title: "Doorschakelen", desc: "Schakel uw telefoonnummer door naar SpeechCloud. Tijdens piekuren, buiten openingstijden, of altijd \u2014 u kiest. Setup in 15 minuten.", img: "/ai-handoff.jpg" },
@@ -67,46 +64,46 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/[0.04] blur-3xl rounded-full -translate-y-1/2 translate-x-1/3" />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm mb-8">
-                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-gray-600">Al actief bij meerdere restaurants in Nederland</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-6 text-gray-900">
-                Elke oproep{" "}
-                <span className="text-blue-600">beantwoord.</span>
-                <br />
-                Elke bestelling{" "}
-                <span className="text-blue-600">binnen.</span>
-              </h1>
-              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-lg">
-                De AI-telefoonagent die klinkt als uw beste medewerker. Neemt 24/7 op, plaatst bestellingen direct in uw systeem, en laat geen klant meer wachten.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-base font-semibold text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/25">
-                  Gratis demo aanvragen <ArrowRight className="h-4 w-4" />
-                </a>
-                <a href="#hoe-het-werkt" className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-7 py-3.5 text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                  <Play className="h-4 w-4" /> Bekijk hoe het werkt
-                </a>
-              </div>
-              <div className="mt-10 flex gap-10">
-                {[["24/7", "Bereikbaar"], ["<2s", "Reactietijd"], ["99%", "Nauwkeurig"]].map(([v, l]) => (
-                  <div key={l}>
-                    <div className="text-2xl font-bold text-blue-600">{v}</div>
-                    <div className="text-xs text-gray-400 mt-0.5">{l}</div>
-                  </div>
-                ))}
-              </div>
+      {/* Hero - with background image */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <img src="/hero-restaurant-ai.jpg" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-6xl px-6 pt-28 pb-16 w-full">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm px-4 py-1.5 text-sm mb-8 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-gray-600">Al actief bij meerdere restaurants in Nederland</span>
             </div>
-            {/* Hero image */}
-            <div className="relative hidden lg:block">
-              <img src="/hero-ai-phone.jpg" alt="AI Voice Assistant voor restaurants" className="w-full h-auto rounded-2xl" />
+            <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-6 text-gray-900">
+              Elke oproep{" "}
+              <span className="text-blue-600">beantwoord.</span>
+              <br />
+              Elke bestelling{" "}
+              <span className="text-blue-600">binnen.</span>
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg">
+              De AI-telefoonagent die klinkt als uw beste medewerker. Neemt 24/7 op, plaatst bestellingen direct in uw systeem, en laat geen klant meer wachten.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 text-base font-semibold text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/25">
+                Gratis demo aanvragen <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#hoe-het-werkt" className="inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 bg-white/80 backdrop-blur-sm px-7 py-3.5 text-base font-medium text-gray-700 hover:bg-white transition-colors shadow-sm">
+                <Play className="h-4 w-4" /> Bekijk hoe het werkt
+              </a>
+            </div>
+            <div className="mt-10 flex gap-10">
+              {[["24/7", "Bereikbaar"], ["<2s", "Reactietijd"], ["99%", "Nauwkeurig"]].map(([v, l]) => (
+                <div key={l}>
+                  <div className="text-2xl font-bold text-blue-600">{v}</div>
+                  <div className="text-xs text-gray-400 mt-0.5">{l}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -124,25 +121,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Problem - warm red tint */}
-      <section className="py-20 bg-red-50/50">
+      {/* Problem - neutral gray-blue, no red */}
+      <section className="py-20 bg-gray-50">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5">
               <img src="/ai-busy-kitchen.jpg" alt="Drukke keuken" className="w-full h-[400px] object-cover" />
-              <div className="absolute top-4 right-4 rounded-full bg-red-500 px-4 py-2 flex items-center gap-2 animate-pulse shadow-lg">
+              <div className="absolute top-4 right-4 rounded-full bg-gray-900/80 backdrop-blur-sm px-4 py-2 flex items-center gap-2 shadow-lg">
                 <Phone className="h-4 w-4 text-white" />
                 <span className="text-sm font-medium text-white">3 gemiste oproepen</span>
               </div>
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-100 px-4 py-1.5 text-sm mb-6">
-                <X className="h-3.5 w-3.5 text-red-500" />
-                <span className="text-red-700 font-medium">Het probleem</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm mb-6 shadow-sm">
+                <AlertTriangle className="h-3.5 w-3.5 text-amber-500" />
+                <span className="text-gray-700 font-medium">Herkenbaar?</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-gray-900">
                 Elke gemiste oproep is een{" "}
-                <span className="text-red-500">gemiste bestelling.</span>
+                <span className="text-gray-500">gemiste bestelling.</span>
               </h2>
               <p className="text-gray-500 leading-relaxed mb-6">
                 Tijdens piekuren gaat de telefoon continu. Uw team is druk met bakken, inpakken en klanten helpen. Wie neemt op? Niemand. Die klant belt de concurrent.
@@ -150,7 +147,7 @@ export default function Home() {
               <ul className="space-y-3">
                 {["Gemiddeld 23% van telefoontjes wordt niet beantwoord", "\u20AC200\u2013\u20AC500 omzet per dag verdampt door gemiste oproepen", "Personeel raakt gestrest door multitasken", "Fouten bij handmatig opnemen van bestellingen"].map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="mt-0.5 text-red-400 font-bold">{"\u2715"}</span>
+                    <span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gray-200 text-gray-500 text-xs flex-shrink-0">{"\u2715"}</span>
                     <span className="text-sm text-gray-600">{item}</span>
                   </li>
                 ))}
@@ -289,11 +286,11 @@ export default function Home() {
             <p className="mt-4 text-lg text-gray-500">De verborgen kosten van gemiste telefoonbestellingen.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-red-200 bg-red-50/50 p-8">
-              <h3 className="mb-6 text-xl font-semibold text-red-600">Zonder SpeechCloud</h3>
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
+              <h3 className="mb-6 text-xl font-semibold text-gray-500">Zonder SpeechCloud</h3>
               <ul className="space-y-4">
                 {["Personeel: \u20AC800 \u2013 \u20AC1.200/maand extra", "23% gemiste oproepen tijdens piek", "Fouten bij handmatige bestellingen", "Niet bereikbaar buiten openingstijden", "Geen inzicht in gemiste omzet"].map((i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-gray-600"><span className="mt-0.5 text-red-400 font-bold">{"\u2715"}</span>{i}</li>
+                  <li key={i} className="flex items-start gap-3 text-sm text-gray-500"><span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gray-200 text-gray-400 text-xs flex-shrink-0">{"\u2715"}</span>{i}</li>
                 ))}
               </ul>
             </div>
@@ -312,7 +309,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial - blue segment */}
+      {/* Testimonial - blue */}
       <section className="py-24 bg-blue-600">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <div className="mb-6 text-5xl">{"\uD83C\uDF55"}</div>
@@ -363,7 +360,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ - light blue */}
+      {/* FAQ */}
       <section id="faq" className="py-24 bg-blue-50/30">
         <div className="mx-auto max-w-3xl px-6">
           <div className="mb-12 text-center">
