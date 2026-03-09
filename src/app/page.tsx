@@ -73,8 +73,8 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-6xl px-6 pt-28 pb-16 w-full">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 backdrop-blur-sm px-4 py-1.5 text-sm mb-8 shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-gray-600">Al actief bij meerdere restaurants in Nederland</span>
+              <span className="h-2 w-2 rounded-full bg-blue-500" />
+              <span className="text-gray-600">Nu beschikbaar voor restaurants in Nederland</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-tight mb-6 text-gray-900">
               Elke oproep{" "}
@@ -106,15 +106,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust strip */}
+      {/* Category strip */}
       <section className="py-10 border-y border-gray-100">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">Vertrouwd door restaurants door heel Nederland</p>
-          <div className="flex items-center justify-center gap-12 opacity-30">
-            {["Pizzeria\u2019s", "Bezorgservices", "Afhaalrestaurants", "Franchises"].map((t) => (
-              <span key={t} className="text-lg font-bold text-gray-400 hidden sm:block">{t}</span>
-            ))}
-          </div>
+          <p className="text-xs uppercase tracking-widest text-gray-400">Geschikt voor pizzeria\u2019s \u00B7 bezorgservices \u00B7 afhaalrestaurants \u00B7 franchises</p>
         </div>
       </section>
 
@@ -306,20 +301,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial - blue */}
-      <section className="py-24 bg-blue-600">
+      {/* Blue band - value prop */}
+      <section className="py-20 bg-blue-600">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <div className="mb-6 text-5xl">{"\uD83C\uDF55"}</div>
-          <blockquote className="text-2xl md:text-3xl font-medium leading-relaxed text-white italic">
-            {"\u201C"}De AI neemt perfect op. Mijn team kan focussen op wat ze het beste doen: geweldig eten maken. We missen geen enkele bestelling meer.{"\u201D"}
-          </blockquote>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold text-white">F</div>
-            <div className="text-left">
-              <div className="font-semibold text-white">Franchise-eigenaar</div>
-              <div className="text-sm text-blue-100">Pizzaketen in Noord-Holland</div>
-            </div>
-          </div>
+          <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
+            Uw klanten bellen. Wij nemen op.\nU draait omzet.
+          </h2>
+          <p className="mt-4 text-lg text-blue-100 max-w-2xl mx-auto">
+            Vraag een gratis demo aan met uw eigen menu en hoor zelf hoe de AI klinkt.
+          </p>
+          <a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-blue-600 hover:bg-blue-50 transition-colors shadow-lg">
+            Gratis demo aanvragen <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </section>
 
