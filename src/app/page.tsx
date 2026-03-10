@@ -25,6 +25,100 @@ const faqs = [
   { q: "Wat kost het?", a: "Vanaf \u20AC149 per maand, vast bedrag. Geen verborgen kosten, geen kosten per gesprek. Maandelijks opzegbaar." },
 ];
 
+function ContactForm() {
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormState("sending");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = {
+      naam: (form.elements.namedItem("naam") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      telefoon: (form.elements.namedItem("telefoon") as HTMLInputElement).value,
+      restaurant: (form.elements.namedItem("restaurant") as HTMLInputElement).value,
+      bericht: (form.elements.namedItem("bericht") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setFormState("sent");
+        form.reset();
+      } else {
+        const err = await res.json();
+        setErrorMsg(err.error || "Er ging iets mis.");
+        setFormState("error");
+      }
+    } catch {
+      setErrorMsg("Geen verbinding. Probeer het later opnieuw.");
+      setFormState("error");
+    }
+  }
+
+  if (formState === "sent") {
+    return (
+      <div className="rounded-2xl bg-gray-800 border border-gray-700 p-12 text-center">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600/20">
+          <CheckCircle2 className="h-8 w-8 text-blue-400" />
+        </div>
+        <h3 className="text-2xl font-bold text-white mb-2">Bedankt!</h3>
+        <p className="text-gray-400">Wij nemen binnen 24 uur contact met u op om een demo in te plannen.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="rounded-2xl bg-gray-800 border border-gray-700 p-8 md:p-10">
+      <div className="grid gap-5 md:grid-cols-2">
+        <div>
+          <label htmlFor="naam" className="block text-sm font-medium text-gray-300 mb-1.5">Naam *</label>
+          <input type="text" name="naam" id="naam" required placeholder="Jan de Vries" className="w-full rounded-xl border border-gray-600 bg-gray-900 px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors" />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1.5">Email *</label>
+          <input type="email" name="email" id="email" required placeholder="jan@restaurant.nl" className="w-full rounded-xl border border-gray-600 bg-gray-900 px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors" />
+        </div>
+        <div>
+          <label htmlFor="telefoon" className="block text-sm font-medium text-gray-300 mb-1.5">Telefoon</label>
+          <input type="tel" name="telefoon" id="telefoon" placeholder="+31 6 12345678" className="w-full rounded-xl border border-gray-600 bg-gray-900 px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors" />
+        </div>
+        <div>
+          <label htmlFor="restaurant" className="block text-sm font-medium text-gray-300 mb-1.5">Restaurant / Keten</label>
+          <input type="text" name="restaurant" id="restaurant" placeholder="Pizza Palace Amsterdam" className="w-full rounded-xl border border-gray-600 bg-gray-900 px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors" />
+        </div>
+      </div>
+      <div className="mt-5">
+        <label htmlFor="bericht" className="block text-sm font-medium text-gray-300 mb-1.5">Bericht *</label>
+        <textarea name="bericht" id="bericht" required rows={4} placeholder="Vertel ons over uw restaurant en wat u zoekt..." className="w-full rounded-xl border border-gray-600 bg-gray-900 px-4 py-3 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-colors resize-none" />
+      </div>
+      {formState === "error" && (
+        <div className="mt-4 rounded-lg bg-red-900/30 border border-red-800 px-4 py-3">
+          <p className="text-sm text-red-400">{errorMsg}</p>
+        </div>
+      )}
+      <button type="submit" disabled={formState === "sending"} className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-base font-semibold text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30 disabled:opacity-50 disabled:cursor-not-allowed">
+        {formState === "sending" ? (
+          <>
+            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
+            Verzenden...
+          </>
+        ) : (
+          <>Gratis demo aanvragen <ArrowRight className="h-4 w-4" /></>
+        )}
+      </button>
+    </form>
+  );
+}
+
 function FAQItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -362,24 +456,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA - dark */}
+      {/* Contact Form */}
       <section id="contact" className="py-24 bg-gray-900">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-            Klaar om elke bestelling{" "}
-            <span className="text-blue-400">binnen te halen?</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-gray-400">
-            Plan een gratis demo met uw eigen menu. Wij laten u in 15 minuten horen hoe de AI uw restaurant vertegenwoordigt.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="mailto:info@speechcloud.nl" className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-8 py-4 text-base font-semibold text-white hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/30">
-              Plan een demo <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="tel:+31612345678" className="inline-flex items-center gap-2 rounded-full border border-gray-700 bg-gray-800 px-8 py-4 text-base font-medium text-white hover:bg-gray-700 transition-colors">
-              <Phone className="h-4 w-4" /> Bel ons direct
-            </a>
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
+              Klaar om elke bestelling{" "}
+              <span className="text-blue-400">binnen te halen?</span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-lg text-gray-400">
+              Vul het formulier in en wij nemen binnen 24 uur contact op voor een gratis demo met uw eigen menu.
+            </p>
           </div>
+          <ContactForm />
         </div>
       </section>
 
