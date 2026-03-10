@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     images: [
       {
-        url: "https://speechcloud.vercel.app/og-image.jpg",
+        url: "https://speechcloud.nl/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "SpeechCloud - Elke oproep beantwoord. Elke bestelling binnen.",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SpeechCloud — Elke oproep beantwoord. Elke bestelling binnen.",
     description: "De AI-telefoonagent voor restaurants. Neemt 24/7 op in vloeiend Nederlands.",
-    images: ["https://speechcloud.vercel.app/og-image.jpg"],
+    images: ["https://speechcloud.nl/og-image.jpg"],
   },
 };
 
