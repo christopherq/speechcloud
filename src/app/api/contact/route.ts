@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         from: "SpeechCloud Contact <onboarding@resend.dev>",
-        to: ["christiaanquak@outlook.com"],
+        to: [process.env.CONTACT_EMAIL || "info@speechcloud.nl"],
         subject: `Nieuwe lead: ${naam}${restaurant ? ` - ${restaurant}` : ""}`,
         reply_to: email,
         html: `
